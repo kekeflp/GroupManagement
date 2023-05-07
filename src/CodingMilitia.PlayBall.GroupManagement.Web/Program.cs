@@ -8,8 +8,21 @@ var app = builder.Build();
 app.UseRouting();
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+	name: "default",
+	pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseStaticFiles();
+
+// Episode 004 自定义请求/响应报文头
+app.Use(async (context, next) =>
+{
+	context.Response.OnStarting(() =>
+	{
+		context.Response.Headers.Add("X-Powered-By", "ASP.NET Core: From 0 to master");
+		return Task.CompletedTask;
+	});
+	await next.Invoke();
+});
 
 // 把web跑起来
 app.Run();
