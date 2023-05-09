@@ -1,3 +1,5 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using CodingMilitia.PlayBall.GroupManagement.Web.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,7 +7,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 //builder.Services.AddSingleton<IGroupsService, InMemoryGroupsSerivce>();
 // 封装AddSingleton实例化服务容器
-builder.Services.AddBusiness();
+// 如需使用默认DI，放开下面的注释
+//builder.Services.AddBusiness();
+
+// Use the three-party package implement DI -- AutoFac
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(b =>
+{
+	b.RegisterModule<AutofacModule>();
+});
+
+
 // 构建容器得到web应用
 var app = builder.Build();
 
