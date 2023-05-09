@@ -1,10 +1,11 @@
-using CodingMilitia.PlayBall.GroupManagement.Business.Services;
-using CodingMilitia.PlayBall.GroupManagement.Impl.Services;
+using CodingMilitia.PlayBall.GroupManagement.Web.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 // 在容器中进行添加各种服务、DI等；
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<IGroupsService, InMemoryGroupsSerivce>();
+//builder.Services.AddSingleton<IGroupsService, InMemoryGroupsSerivce>();
+// 封装AddSingleton实例化服务容器
+builder.Services.AddBusiness();
 // 构建容器得到web应用
 var app = builder.Build();
 
