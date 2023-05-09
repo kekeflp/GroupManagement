@@ -8,6 +8,12 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
+    <Folder Include="新文件夹1\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CodingMilitia.PlayBall.GroupManagement.Business\CodingMilitia.PlayBall.GroupManagement.Business.csproj" />
+    <ProjectReference Include="..\CodingMilitia.PlayBall.GroupManagement.Impl\CodingMilitia.PlayBall.GroupManagement.Impl.csproj" />
   </ItemGroup>
 
 </Project>

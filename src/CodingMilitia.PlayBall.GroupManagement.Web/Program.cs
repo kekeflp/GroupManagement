@@ -1,10 +1,14 @@
+using CodingMilitia.PlayBall.GroupManagement.Business.Services;
+using CodingMilitia.PlayBall.GroupManagement.Impl.Services;
+
 var builder = WebApplication.CreateBuilder(args);
-// ÔÚÈİÆ÷ÖĞ½øĞĞÌí¼Ó¸÷ÖÖ·şÎñ¡¢DIµÈ£»
+// åœ¨å®¹å™¨ä¸­è¿›è¡Œæ·»åŠ å„ç§æœåŠ¡ã€DIç­‰ï¼›
 builder.Services.AddControllersWithViews();
-// ¹¹½¨ÈİÆ÷µÃµ½webÓ¦ÓÃ
+builder.Services.AddSingleton<IGroupsService, InMemoryGroupsSerivce>();
+// æ„å»ºå®¹å™¨å¾—åˆ°webåº”ç”¨
 var app = builder.Build();
 
-// ÒÔÏÂÊÇÌí¼Ó¸÷ÖÖÇëÇó¹ÜµÀ¡¢ÖĞ¼ä¼şµÈ£»
+// ä»¥ä¸‹æ˜¯æ·»åŠ å„ç§è¯·æ±‚ç®¡é“ã€ä¸­é—´ä»¶ç­‰ï¼›
 app.UseRouting();
 
 app.MapControllerRoute(
@@ -13,7 +17,7 @@ app.MapControllerRoute(
 
 app.UseStaticFiles();
 
-// Episode 004 ×Ô¶¨ÒåÇëÇó/ÏìÓ¦±¨ÎÄÍ·
+// Episode 004 è‡ªå®šä¹‰è¯·æ±‚/å“åº”æŠ¥æ–‡å¤´
 app.Use(async (context, next) =>
 {
 	context.Response.OnStarting(() =>
@@ -24,5 +28,5 @@ app.Use(async (context, next) =>
 	await next.Invoke();
 });
 
-// °ÑwebÅÜÆğÀ´
+// æŠŠwebè·‘èµ·æ¥
 app.Run();
