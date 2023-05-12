@@ -13,12 +13,14 @@ namespace CodingMilitia.PlayBall.GroupManagement.Web.Controllers
 	{
 		private readonly IGroupsService _groupsService;
 		private readonly SomeRootConfiguration _config;
+		private readonly SomeSecretsConfiguration _scecret;
 
-		public GroupsController(IGroupsService groupsService, IOptions<SomeRootConfiguration> config)
+		public GroupsController(IGroupsService groupsService, IOptions<SomeRootConfiguration> config, IOptions<SomeSecretsConfiguration> scecret)
 		{
 			_groupsService = groupsService;
 			// _config不仅能获取到 appsettings.json 中 SomeRoot 节点中的2个值，还能获取到运行时的参数携带的值 CmdLineKey	456789
 			_config = config.Value;
+			_scecret = scecret.Value;
 		}
 
 		// GET: /groups/index

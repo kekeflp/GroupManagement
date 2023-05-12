@@ -4,6 +4,8 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <!--dotnet user-secrets init de 羡慕项目目录 等待得到对于项目来说是唯一的上述命令会将 UserSecretsId 元素添加到项目文件的 PropertyGroup 中 -->
+    <UserSecretsId>dd1acbc0-3848-440b-8900-fa6eb456aa77</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

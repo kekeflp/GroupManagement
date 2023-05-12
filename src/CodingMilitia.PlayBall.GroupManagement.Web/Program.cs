@@ -12,7 +12,9 @@ builder.Services.AddControllersWithViews();
 // 如需使用默认DI，放开下面的注释
 //builder.Services.AddBusiness();
 // 从应用运行时的参数获取值
-builder.Services.Configure<SomeRootConfiguration>(builder.Configuration.GetSection("SomeRoot"));
+builder.Services.Configure<SomeRootConfiguration>(builder.Configuration.GetSection("SomeRoot")); // 这种写法NO GOOD ，建议POCO
+// builder.Configuration.GetSection("SomeSecrets").Get<SomeSecretsConfiguration>();
+builder.Services.Configure<SomeSecretsConfiguration>(builder.Configuration.GetSection("SomeSecrets"));
 // Use the three-party package implement DI -- AutoFac
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(b =>
